@@ -79,7 +79,23 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
 
-            post.PublishDateTime = DateTime.Now;
+            DateTime pubDate;
+            while(true)
+            {
+
+            Console.WriteLine("Enter Publication Date: (mm/dd/yyyy HH:MM:SS)");
+            bool allowed = DateTime.TryParse(Console.ReadLine(), out pubDate);
+            if(allowed)
+                {
+                    break;
+                }
+            else
+                {
+                    Console.WriteLine("Must enter a valid publication date");
+                }
+            }
+
+            post.PublishDateTime = pubDate;
 
             post.Author = ChooseAuthor("Select the post's author");
 
@@ -199,7 +215,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             if (prompt == null)
             {
-                prompt = "Please choose an Blog:";
+                prompt = "Please choose a Blog:";
             }
 
             Console.WriteLine(prompt);
