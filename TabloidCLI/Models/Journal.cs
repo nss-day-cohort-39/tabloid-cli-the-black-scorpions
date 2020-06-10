@@ -14,5 +14,14 @@ namespace TabloidCLI.Models
 
         public DateTime CreateDateTime { get; set; }
 
+        public string JournalEntry => @$"
+Title: {Title} Date:{CreateDateTime}
+{Content}";
+
+        public override string ToString()
+        {
+            return JournalEntry;
+        }
+
     }
 }
