@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TabloidCLI.Models;
 using TabloidCLI.Repositories;
+using System.Threading.Tasks;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
@@ -55,6 +56,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
+            Console.BackgroundColor = ConsoleColor.Red;
             List<Journal> journalEntries = _journalRepository.GetAll();
             Console.WriteLine("-----------------------------------");
             foreach (Journal journal in journalEntries)
