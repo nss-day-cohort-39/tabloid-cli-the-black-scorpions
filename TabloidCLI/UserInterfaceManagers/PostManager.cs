@@ -126,13 +126,37 @@ namespace TabloidCLI.UserInterfaceManagers
                 postToEdit.Url = content;
             }
 
+            DateTime pubDate = postToEdit.PublishDateTime;
+            while (true)
+            {
+
+                Console.WriteLine("Enter New Publication Date: (mm/dd/yyyy HH:MM:SS)");
+                string resp = Console.ReadLine();
+                bool allowed = DateTime.TryParse(resp, out pubDate);
+                if (allowed)
+                {
+                    break;
+                }
+                else if (resp == "")
+                {
+                    pubDate = postToEdit.PublishDateTime;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Must enter a valid publication date");
+                }
+            }
+
+            postToEdit.PublishDateTime = pubDate;
+
             Author newAuthor = ChooseAuthor("New Author (blank to leave unchanged: ");
             if (newAuthor != null)
             {
                 postToEdit.Author = newAuthor;
             }
 
-            Blog newBlog = ChooseBlog("New Author (blank to leave unchanged: ");
+            Blog newBlog = ChooseBlog("New Blog (blank to leave unchanged: ");
             if (newBlog != null)
             {
                 postToEdit.Blog = newBlog;
