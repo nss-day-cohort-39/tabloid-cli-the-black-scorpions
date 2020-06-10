@@ -56,7 +56,6 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
-            Console.BackgroundColor = ConsoleColor.Red;
             List<Journal> journalEntries = _journalRepository.GetAll();
             Console.WriteLine("-----------------------------------");
             foreach (Journal journal in journalEntries)

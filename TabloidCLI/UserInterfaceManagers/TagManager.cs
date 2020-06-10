@@ -53,10 +53,12 @@ namespace TabloidCLI.UserInterfaceManagers
         private void List()
         {
             List<Tag> tags = _tagRepository.GetAll();
+            Console.WriteLine("-----------------------------------");
             foreach (Tag tag in tags)
             {
                 Console.WriteLine(tag);
             }
+            Console.WriteLine("-----------------------------------");
         }
 
         private void Add()
