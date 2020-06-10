@@ -56,10 +56,12 @@ namespace TabloidCLI.UserInterfaceManagers
         private void List()
         {
             List<Journal> journalEntries = _journalRepository.GetAll();
+            Console.WriteLine("-----------------------------------");
             foreach (Journal journal in journalEntries)
             {
                 Console.WriteLine(journal);
             }
+            Console.WriteLine("-----------------------------------");
         }
 
         private void Add()
