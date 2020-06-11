@@ -92,7 +92,6 @@ namespace TabloidCLI
                 }
             }
         }
-
         public void Insert(Blog blog)
         {
             using (SqlConnection conn = Connection)

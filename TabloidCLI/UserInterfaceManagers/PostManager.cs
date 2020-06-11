@@ -27,7 +27,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine("Post Menu");
             Console.WriteLine(" 1) List Posts");
-            Console.WriteLine("2) Post Details");
+            Console.WriteLine(" 2) Post Details");
             Console.WriteLine(" 3) Add Post");
             Console.WriteLine(" 4) Edit Post");
             Console.WriteLine(" 5) Remove Post");
@@ -74,7 +74,12 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("-----------------------------------");
             foreach (Post post in posts)
             {
-                Console.WriteLine(post);
+                Console.WriteLine($@"{post.Title}
+{post.Url}
+{post.PublishDateTime}
+{post.Author.FullName}
+{post.Blog.Title}
+");
             }
             Console.WriteLine("-----------------------------------");
         }

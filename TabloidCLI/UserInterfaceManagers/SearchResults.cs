@@ -5,7 +5,7 @@ namespace TabloidCLI.UserInterfaceManagers
 {
     public class SearchResults<T>
     {
-        private List<T> _results = new List<T>();
+        public List<T> Results = new List<T>();
 
         public string Title { get; set; } = "Search Results";
 
@@ -13,22 +13,38 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             get
             {
-                return _results.Count == 0;
+                return Results.Count == 0;
             }
         }
 
         public void Add(T result)
         {
-            _results.Add(result);
+            Results.Add(result);
+        }
+
+        public void AddList(List<T> result)
+        {
+            Results.AddRange(result);
         }
 
         public void Display()
         {
-            Console.WriteLine(Title);
-
-            foreach (T result in _results)
+            
+            foreach (T result in Results)
             {
-                Console.WriteLine(" " + result);
+                string type = result.GetType().ToString();
+                if (type == "TabloidCLI.Models.Author")
+                {
+                    Console.WriteLine("Author: " + result);
+                }
+                else if (type == "TabloidCLI.Models.Post")
+                {
+                    Console.WriteLine("Post: " + result);
+                }
+                else if (type == "TabloidCLI.Models.Blog")
+                {
+                    Console.WriteLine("Blog: " + result);
+                }
             }
 
             Console.WriteLine();
