@@ -25,10 +25,22 @@ namespace TabloidCLI.UserInterfaceManagers
         public void Display()
         {
             Console.WriteLine(Title);
-
+            
             foreach (T result in _results)
             {
-                Console.WriteLine(" " + result);
+                string type = result.GetType().ToString();
+                if (type == "TabloidCLI.Models.Author")
+                {
+                    Console.WriteLine("Author: " + result);
+                }
+                else if (type == "TabloidCLI.Models.Post")
+                {
+                    Console.WriteLine("Post: " + result);
+                }
+                else if (type == "TabloidCLI.Models.Blog")
+                {
+                    Console.WriteLine("Blog: " + result);
+                }
             }
 
             Console.WriteLine();
