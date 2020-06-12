@@ -108,7 +108,7 @@ namespace TabloidCLI
                                           FROM Author a
                                                LEFT JOIN AuthorTag at on a.Id = at.AuthorId
                                                LEFT JOIN Tag t on t.Id = at.TagId
-                                         WHERE t.Name LIKE @name";
+                                         WHERE t.Name LIKE @name AND a.IsDeleted = 0";
                     cmd.Parameters.AddWithValue("@name", $"%{tagName}%");
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -145,7 +145,7 @@ namespace TabloidCLI
                                           FROM Blog b
                                                LEFT JOIN BlogTag bt on b.Id = bt.BlogId
                                                LEFT JOIN Tag t on t.Id = bt.TagId
-                                         WHERE t.Name LIKE @name";
+                                         WHERE t.Name LIKE @name AND b.IsDeleted = 0";
                     cmd.Parameters.AddWithValue("@name", $"%{tagName}%");
                     SqlDataReader reader = cmd.ExecuteReader();
 
