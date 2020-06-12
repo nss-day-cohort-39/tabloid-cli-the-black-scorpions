@@ -12,21 +12,21 @@ namespace TabloidCLI.UserInterfaceManagers
         private AuthorRepository _authorRepository;
         private PostRepository _postRepository;
         private TagRepository _tagRepository;
-        private int _postId;
+        private Post _post;
 
-        public PostDetailManager(IUserInterfaceManager parentUI, string connectionString, int postId)
+        public PostDetailManager(IUserInterfaceManager parentUI, string connectionString, Post post)
         {
             _parentUI = parentUI;
             _connectionString = connectionString;
             _authorRepository = new AuthorRepository(connectionString);
             _postRepository = new PostRepository(connectionString);
             _tagRepository = new TagRepository(connectionString);
-            _postId = postId;
+            _post = post;
         }
 
         public IUserInterfaceManager Execute()
         {
-            Post post = _postRepository.Get(_postId);
+            Post post = _post;
             Console.WriteLine($"{post.Title} Details");
             Console.WriteLine(" 1) View");
             Console.WriteLine(" 2) Add Tag");
@@ -48,7 +48,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     RemoveTag();
                     return this;
                 case "4":
-                    return new NoteManager(this, _connectionString);
+                    return new NoteManager(this, _connectionString, post);
                 case "0":
                     return _parentUI;
                 default:
@@ -59,7 +59,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void View()
         {
-            Post post = _postRepository.Get(_postId);
+            Post post = _postRepository.Get(_post.Id);
             Console.WriteLine($"Title: {post.Title}");
             Console.WriteLine($"URL: {post.Url}");
             Console.WriteLine($"PublishDateTime:{post.PublishDateTime}");
@@ -73,7 +73,7 @@ namespace TabloidCLI.UserInterfaceManagers
      
         private void AddTag()
         {
-            Post post = _postRepository.Get(_postId);
+            Post post = _postRepository.Get(_post.Id);
 
             Console.WriteLine($"Which tag would you like to add to {post.Title}?");
             List<Tag> tags = _tagRepository.GetAll();
@@ -100,7 +100,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void RemoveTag()
         {
-            Post post = _postRepository.Get(_postId);
+            Post post = _postRepository.Get(_post.Id);
 
             Console.WriteLine($"Which tag would you like to remove from {post.Title}?");
             List<Tag> tags = post.Tags;

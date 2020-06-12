@@ -12,13 +12,15 @@ namespace TabloidCLI.UserInterfaceManagers
         private NoteRepository _noteRepository;
         private PostRepository _postRepository;
         private string _connectionString;
+        private Post _post;
 
-        public NoteManager(IUserInterfaceManager parentUI, string connectionString)
+        public NoteManager(IUserInterfaceManager parentUI, string connectionString, Post post)
         {
             _parentUI = parentUI;
             _noteRepository = new NoteRepository(connectionString);
             _postRepository = new PostRepository(connectionString);
             _connectionString = connectionString;
+            _post = post;
         }
 
         public IUserInterfaceManager Execute()
@@ -65,7 +67,7 @@ Post: {note.Post.Title}");
 
         private void Add()
         {
-            Console.WriteLine("New Note Entry");
+            Console.WriteLine($"New Note Entry for {_post.Title} ");
             Note note = new Note();
 
 
@@ -89,39 +91,8 @@ Post: {note.Post.Title}");
 
             
             note.CreateDateTime = DateTime.Now;
-            note.Post = ChoosePost("Select a post");
+            note.Post = _post;
             _noteRepository.Insert(note);
-        }
-
-        private Post ChoosePost(string prompt = null)
-        {
-            if (prompt == null)
-            {
-                prompt = "Please choose a Post:";
-            }
-
-            Console.WriteLine(prompt);
-
-            List<Post> posts = _postRepository.GetAll();
-
-            for (int i = 0; i < posts.Count; i++)
-            {
-                Post post = posts[i];
-                Console.WriteLine($" {i + 1}) {post.Title}");
-            }
-            Console.Write("> ");
-
-            string input = Console.ReadLine();
-            try
-            {
-                int choice = int.Parse(input);
-                return posts[choice - 1];
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Selection");
-                return null;
-            }
         }
 
         private Note ChooseNote(string prompt = null)
