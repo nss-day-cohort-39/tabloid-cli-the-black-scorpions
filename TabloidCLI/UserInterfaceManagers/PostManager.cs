@@ -89,8 +89,20 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Post Entry");
             Post post = new Post();
 
-            Console.Write("Title: ");
-            post.Title = Console.ReadLine();
+            while(true)
+            {
+                Console.Write("Title: ");
+                string resp = Console.ReadLine();
+                if(resp.Length > 55)
+                {
+                    Console.WriteLine("Post titles must be less than 55 characters.");
+                }
+                else
+                {
+                    post.Title = resp;
+                    break;
+                }
+            }
 
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
