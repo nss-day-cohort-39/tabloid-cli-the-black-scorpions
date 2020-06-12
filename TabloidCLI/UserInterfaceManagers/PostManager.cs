@@ -141,11 +141,22 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New post title (blank to leave unchanged: ");
-            string title = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(title))
+            while (true)
             {
-                postToEdit.Title = title;
+                Console.Write("New post title(blank to leave unchanged: ");
+                string title = Console.ReadLine();
+                if (title.Length > 55)
+                {
+                    Console.WriteLine("Post titles must be less than 55 characters.");
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(title))
+                    {
+                        postToEdit.Title = title;
+                    }
+                    break;
+                }
             }
             Console.Write("New URL (blank to leave unchanged: ");
             string content = Console.ReadLine();

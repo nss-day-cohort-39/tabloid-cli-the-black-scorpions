@@ -106,11 +106,35 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Author");
             Author author = new Author();
 
-            Console.Write("First Name: ");
-            author.FirstName = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("First Name: ");
+                string resp = Console.ReadLine();
+                if (resp.Length > 55)
+                {
+                    Console.WriteLine("Author first names must be less than 55 characters.");
+                }
+                else
+                {
+                    author.FirstName = resp;
+                    break;
+                }
+            }
 
-            Console.Write("Last Name: ");
-            author.LastName = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Last Name: ");
+                string resp = Console.ReadLine();
+                if (resp.Length > 55)
+                {
+                    Console.WriteLine("Author last names must be less than 55 characters.");
+                }
+                else
+                {
+                    author.LastName = resp;
+                    break;
+                }
+            }
 
             Console.Write("Bio: ");
             author.Bio = Console.ReadLine();
@@ -127,17 +151,39 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New first name (blank to leave unchanged: ");
-            string firstName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(firstName))
+            while (true)
             {
-                authorToEdit.FirstName = firstName;
+                Console.Write("New first name(blank to leave unchanged: ");
+                string firstName = Console.ReadLine();
+                if (firstName.Length > 55)
+                {
+                    Console.WriteLine("Author first names must be less than 55 characters.");
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(firstName))
+                    {
+                        authorToEdit.FirstName = firstName;
+                    }
+                    break;
+                }
             }
-            Console.Write("New last name (blank to leave unchanged: ");
-            string lastName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(lastName))
+            while (true)
             {
-                authorToEdit.LastName = lastName;
+                Console.Write("New last name(blank to leave unchanged: ");
+                string lastName = Console.ReadLine();
+                if (lastName.Length > 55)
+                {
+                    Console.WriteLine("Author last names must be less than 55 characters.");
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(lastName))
+                    {
+                        authorToEdit.FirstName = lastName;
+                    }
+                    break;
+                }
             }
             Console.Write("New bio (blank to leave unchanged: ");
             string bio = Console.ReadLine();

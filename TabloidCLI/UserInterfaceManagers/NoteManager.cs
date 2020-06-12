@@ -77,7 +77,7 @@ Post: {note.Post.Title}");
                 string resp = Console.ReadLine();
                 if (resp.Length > 55)
                 {
-                    Console.WriteLine("Post titles must be less than 55 characters.");
+                    Console.WriteLine("Note titles must be less than 55 characters.");
                 }
                 else
                 {

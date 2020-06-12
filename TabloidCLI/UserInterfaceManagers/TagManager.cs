@@ -66,8 +66,20 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Tag");
             Tag tag = new Tag();
 
-            Console.Write("Name: ");
-            tag.Name = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Name: ");
+                string resp = Console.ReadLine();
+                if (resp.Length > 55)
+                {
+                    Console.WriteLine("Tag names must be less than 55 characters.");
+                }
+                else
+                {
+                    tag.Name = resp;
+                    break;
+                }
+            }
 
             _tagRepository.Insert(tag);
         }
@@ -112,11 +124,22 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New name (blank to leave unchanged: ");
-            string tagName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(tagName))
+            while (true)
             {
-                tagToEdit.Name = tagName;
+                Console.Write("New name(blank to leave unchanged: ");
+                string name = Console.ReadLine();
+                if (name.Length > 55)
+                {
+                    Console.WriteLine("Tag names must be less than 55 characters.");
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        tagToEdit.Name = name;
+                    }
+                    break;
+                }
             }
 
 
