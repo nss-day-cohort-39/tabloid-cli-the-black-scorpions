@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS Note;
 DROP TABLE IF EXISTS Post;
 DROP TABLE IF EXISTS Blog;
 DROP TABLE IF EXISTS Author;
+DROP TABLE IF EXISTS Color;
 CREATE TABLE Author (
     Id INTEGER NOT NULL PRIMARY KEY IDENTITY,
     FirstName NVARCHAR(55) NOT NULL,
@@ -77,6 +78,11 @@ CREATE TABLE Journal (
     Content TEXT NOT NULL,
     CreateDateTime DATETIME NOT NULL
 );
+CREATE TABLE Color (
+    Id INTEGER NOT NULL PRIMARY KEY IDENTITY,
+    Color NVARCHAR(55) NOT NULL
+)
+INSERT INTO Color ( Color) VALUES ( 'Black' );
 INSERT INTO Author ( FirstName, LastName, Bio) VALUES ( 'Scott', 'Hanselman', '.net advocate. Works at Micrsoft' );
 INSERT INTO Author ( FirstName, LastName, Bio) VALUES ( 'Eric',  'Elliott', 'Opinionated javascript developer' );
 INSERT INTO Author ( FirstName, LastName, Bio) VALUES ( 'Felienne', 'Hermans', ' associate professor at the Leiden Institute of Advanced Computer Science at Leiden University, where head the PERL group that researches programming education');

@@ -54,10 +54,6 @@ namespace TabloidCLI.Repositories
         }
 
 
-        
-
-        
-
         public void Insert(Note note)
         {
             using (SqlConnection conn = Connection)
