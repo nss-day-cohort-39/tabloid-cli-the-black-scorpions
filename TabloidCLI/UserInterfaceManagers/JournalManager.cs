@@ -133,11 +133,22 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New entry title (blank to leave unchanged: ");
-            string title = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(title))
+            while (true)
             {
-                entryToEdit.Title = title;
+                Console.Write("New entry Title(blank to leave unchanged: ");
+                string title = Console.ReadLine();
+                if (title.Length > 55)
+                {
+                    Console.WriteLine("Journal entry titles must be less than 55 characters.");
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(title))
+                    {
+                        entryToEdit.Title = title;
+                    }
+                    break;
+                }
             }
             Console.Write("New content (blank to leave unchanged: ");
             string content = Console.ReadLine();

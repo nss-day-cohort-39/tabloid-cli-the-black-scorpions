@@ -124,11 +124,22 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New name (blank to leave unchanged: ");
-            string tagName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(tagName))
+            while (true)
             {
-                tagToEdit.Name = tagName;
+                Console.Write("New name(blank to leave unchanged: ");
+                string name = Console.ReadLine();
+                if (name.Length > 55)
+                {
+                    Console.WriteLine("Tag names must be less than 55 characters.");
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        tagToEdit.Name = name;
+                    }
+                    break;
+                }
             }
 
 
