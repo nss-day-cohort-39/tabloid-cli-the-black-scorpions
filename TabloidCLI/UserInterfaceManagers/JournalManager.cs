@@ -70,8 +70,20 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Journal Entry");
             Journal journal = new Journal();
 
-            Console.Write("Title: ");
-            journal.Title = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Title: ");
+                string resp = Console.ReadLine();
+                if (resp.Length > 55)
+                {
+                    Console.WriteLine("Journal titles must be less than 55 characters.");
+                }
+                else
+                {
+                    journal.Title = resp;
+                    break;
+                }
+            }
 
             Console.Write("Content: ");
             journal.Content = Console.ReadLine();

@@ -78,8 +78,20 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Blog");
             Blog blog = new Blog();
 
-            Console.Write("Title: ");
-            blog.Title = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Title: ");
+                string resp = Console.ReadLine();
+                if (resp.Length > 55)
+                {
+                    Console.WriteLine("Blog titles must be less than 55 characters.");
+                }
+                else
+                {
+                    blog.Title = resp;
+                    break;
+                }
+            }
 
             Console.Write("Url: ");
             blog.Url = Console.ReadLine();
