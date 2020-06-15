@@ -25,3 +25,13 @@ Our new business will create a software product to allow people save info about 
 In order to test the new business idea, we'll create a [Proof of Concept (POC)](https://en.wikipedia.org/wiki/Proof_of_concept#Software_development). This POC will be a simplified implementation of the idea that will be used to test the business idea to ensure that customers would find it valuable, and also to allow the team to get a handle on the concept. After we complete the POC we will use it to evaluate our business idea and determine if we need to pivot (change direction) toward another idea.
 
 For our POC, we will build a command line app in C# and save our data in SQL Server.
+
+---
+
+## Running the Application
+1. Run the SQL script that's in this directory in Visual Studio to create the database for the application.
+2. Run the application from within Visual Studio (Ctr+F5 on Windows), or navigate to the application's solution directory from your CLI and type
+```bash
+dotnet run
+```
+
