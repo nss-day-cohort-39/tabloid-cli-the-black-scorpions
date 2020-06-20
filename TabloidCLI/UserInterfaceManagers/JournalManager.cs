@@ -57,12 +57,42 @@ namespace TabloidCLI.UserInterfaceManagers
         private void List()
         {
             List<Journal> journalEntries = _journalRepository.GetAll();
-            Console.WriteLine("-----------------------------------");
-            foreach (Journal journal in journalEntries)
+            bool display = true;
+            int index = 0;
+
+            while (display)
             {
-                Console.WriteLine(journal);
+                Console.WriteLine(journalEntries[index]);
+
+                var keyDown = Console.ReadKey();
+
+                switch(keyDown.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        if(index == journalEntries.Count - 1)
+                        {
+                            index = 0;
+                        }
+                        else
+                        {
+                            index += 1;
+                        }
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (index == 0)
+                        {
+                            index = journalEntries.Count - 1;
+                        }
+                        else
+                        {
+                            index -= 1;
+                        }
+                        break;
+                    case ConsoleKey.Escape:
+                        display = false;
+                        break;
+                }
             }
-            Console.WriteLine("-----------------------------------");
         }
 
         private void Add()
