@@ -59,13 +59,14 @@ namespace TabloidCLI.UserInterfaceManagers
             List<Journal> journalEntries = _journalRepository.GetAll();
             bool display = true;
             int index = 0;
+            int end = journalEntries.Count - 1;
             void write()
             {
                 Console.Clear();
                 Console.WriteLine(journalEntries[index]);
             }
-            write();
 
+            write();
             while (display)
             {
                 var pressedKey = Console.ReadKey(true).Key;
@@ -73,7 +74,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 switch(pressedKey)
                 {
                     case ConsoleKey.DownArrow:
-                        if(index == journalEntries.Count - 1)
+                        if(index == end)
                         {
                             index = 0;
                         }
@@ -86,7 +87,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     case ConsoleKey.UpArrow:
                         if (index == 0)
                         {
-                            index = journalEntries.Count - 1;
+                            index = end;
                         }
                         else
                         {
