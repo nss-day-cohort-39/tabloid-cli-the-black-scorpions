@@ -27,7 +27,39 @@ namespace TabloidCLI.Repositories
 
         public Journal Get(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT Id,
+                                               Title,
+                                               Content,
+                                               CreateDateTime
+                                          FROM Journal
+                                          WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    Journal journal = null;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        journal = new Journal()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Title = reader.GetString(reader.GetOrdinal("Title")),
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                        };
+                    }
+
+                    reader.Close();
+
+                    return journal;
+                }
+            }
         }
 
         public List<Journal> GetAll()
