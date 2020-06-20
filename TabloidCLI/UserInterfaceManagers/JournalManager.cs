@@ -61,6 +61,7 @@ namespace TabloidCLI.UserInterfaceManagers
             int index = 0;
             void write()
             {
+                Console.Clear();
                 Console.WriteLine(journalEntries[index]);
             }
             write();
