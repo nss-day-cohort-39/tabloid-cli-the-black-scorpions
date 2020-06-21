@@ -63,8 +63,18 @@ namespace TabloidCLI.UserInterfaceManagers
                 Console.Clear();
                 Console.WriteLine(journalEntries[i]);
             }
-            int next(int n) { i = (i + 1) % journalEntries.Count; return i; }
-            int prev(int n) { i = i == 0 ? journalEntries.Count - 1 : (i - 1) % journalEntries.Count; return i; }
+            int next(int n) 
+            { 
+                n = (n + 1) % journalEntries.Count;
+                i = n;
+                return n; 
+            }
+            int prev(int n) { 
+                n = (n == 0)
+                    ? journalEntries.Count - 1 
+                    : (n - 1) % journalEntries.Count;
+                i = n;
+                return i; }
             write(i);
             while (true)
             {
